@@ -1,5 +1,5 @@
 export default async function getCharacters() {
-  const resp = await fetch('https://rickandmortyapi.com/api');
-  const data = resp.json();
-  return data;
+  const resp = await fetch('https://rickandmortyapi.com/api/character');
+  const data = await resp.json();
+  return data.results;
 }
