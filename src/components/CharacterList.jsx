@@ -1,34 +1,43 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import getCharacters from '../services/characters';
-import './CharacterList.css';
+import { useEffect, useState } from 'react';
+import { Link, Route, useRouteMatch } from 'react-router-dom';
+import CharacterInfo from './CharacterInfo';
 
 export default function CharacterList() {
-  const [characters, setCharacters] = useState({});
+  const { url, path } = useRouteMatch();
+  console.log({ url, path });
+  const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getCharacters();
-      console.log(data);
-      setCharacters(data);
-      setTimeout(() => {
-        setLoading(false);
-      }, 700);
-    };
-    fetchData();
+    async function getCharacters() {
+      const res = await fetch('https://rickandmortyapi.com/api/character');
+      const { results } = await res.json();
+      setCharacters(results);
+      console.log('hi', results);
+      setLoading(false);
+    }
+    getCharacters();
   }, []);
-  if (loading) return <div className="lds-hourglass"></div>;
+  // if (loading) return <div className="lds-hourglass"></div>;
   return (
-    <div>
-      Character List
-      {characters.map((character) => (
-        <ul key={character.id}>
-          <li>{character.name}</li>
-          <li>Status{character.status}</li>
-          <li>Species {character.species}</li>
-          <img src={character.image}></img>
-        </ul>
-      ))}
-    </div>
+    <>
+      <h1>character list</h1>
+      {loading ? (
+        <p>loading</p>
+      ) : (
+        <>
+          <ul>
+            {characters.map((character) => (
+              <li key={character.id}>
+                <Link to={`${url}/${character.id}`}>{character.name}</Link>
+              </li>
+            ))}
+          </ul>
+          <Route path={`${path}/:id`}>
+            <CharacterInfo characters={characters} />
+          </Route>
+        </>
+      )}
+    </>
   );
 }
