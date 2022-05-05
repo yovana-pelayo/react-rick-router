@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
-import CharacterList from './components/CharacterList';
 
 describe('App', () => {
   it('displays a list of character details', async () => {
