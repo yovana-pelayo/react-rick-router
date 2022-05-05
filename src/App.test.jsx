@@ -18,7 +18,7 @@ describe('App', () => {
   });
   test('displays a character name that redirects to details', async () => {
     render(
-      <MemoryRouter initialEntries={['/characters/1']} initialIndex={1}>
+      <MemoryRouter initialEntries={['/characters']} initialIndex={1}>
         <App />
       </MemoryRouter>
     );
@@ -33,6 +33,9 @@ describe('App', () => {
     );
     const image = await screen.findByAltText('image');
     expect(image).toBeInTheDocument();
+
+    //     const status = await screen.findByText('Alive');
+    //     expect(status).toBeInTheDocument();
   });
 });
 

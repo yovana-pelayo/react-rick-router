@@ -4,7 +4,6 @@ import CharacterInfo from './CharacterInfo';
 
 export default function CharacterList() {
   const { url, path } = useRouteMatch();
-  console.log({ url, path });
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
 
