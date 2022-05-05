@@ -4,7 +4,9 @@ export default function Home() {
   return (
     <div>
       <h1>Home Page</h1>
-      <Link to="/characters">Characters List</Link>
+      <Link to="/characters" aria-label="characters-list">
+        Characters List
+      </Link>
     </div>
   );
 }

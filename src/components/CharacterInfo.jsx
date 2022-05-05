@@ -14,9 +14,10 @@ export default function CharacterInfo({ characters = [] }) {
   return (
     <div>
       <h2>Character {id}</h2>
-      <p>Status{character.status}</p>
-      <p>Species {character.species}</p>
-      <img src={character.image}></img>
+      <p>Name: {character.name}</p>
+      <p>Status: {character.status}</p>
+      <p>Species: {character.species}</p>
+      <img src={character.image} alt="image"></img>
     </div>
   );
 }

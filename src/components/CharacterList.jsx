@@ -29,7 +29,7 @@ export default function CharacterList() {
           <ul>
             {characters.map((character) => (
               <li key={character.id}>
-                <Link to={`${url}/${character.id}`}>{character.name}</Link>
+                <Link to={`${url}/${character.id}`}>{character.name} </Link>
               </li>
             ))}
           </ul>
